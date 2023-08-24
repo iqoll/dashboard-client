@@ -1,7 +1,19 @@
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Products from './pages/Products';
+import Add from './pages/Add';
+import Update from './pages/Update';
+
 function App() {
   return (
     <div className="App">
-      <h1 className="flex bg-red-100 text-5xl">Hello this is tailwind class</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Products/>}/>
+          <Route path='/products' element={<Products/>}/>
+          <Route path='/add' element={<Add/>}/>
+          <Route path='/update/:id' element={<Update/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
