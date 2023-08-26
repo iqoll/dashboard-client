@@ -32,7 +32,7 @@ function Products() {
 	}
 
 	return (
-		<div>
+		<>
 			<Navbar />
 			<div className='mt-16 flex justify-center'>
 				<div className='flex flex-col space-y-3'>
@@ -41,7 +41,10 @@ function Products() {
 					</h1>
 					<div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
 						{products.map((product) => (
-							<div className='bg-slate-200 p-6 rounded-md shadow-2xl relative'>
+							<div
+								key={product.id}
+								className='bg-slate-200 p-6 rounded-md shadow-2xl relative'
+							>
 								<h2>
 									ID: <span className='font-thin'>{product.id}</span>
 								</h2>
@@ -54,17 +57,17 @@ function Products() {
 								<p>quantity: {product.quantity}</p>
 								<button
 									onClick={() => handleDelete(product.id)}
-									class='group absolute top-1 right-1 flex items-center justify-center w-8 h-8 bg-white rounded-full md:bg-white md:top-4 hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'
+									className='group absolute top-1 right-1 flex items-center justify-center w-8 h-8 bg-white rounded-full md:bg-white md:top-4 hover:cursor-pointer hover:-translate-y-0.5 transition duration-150'
 								>
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
-										class='w-6 h-6 text-black group-hover:text-gray-600'
+										className='w-6 h-6 text-black group-hover:text-gray-600'
 										viewBox='0 0 24 24'
-										stroke-width='1.5'
+										strokeWidth='1.5'
 										stroke='currentColor'
 										fill='none'
-										stroke-linecap='round'
-										stroke-linejoin='round'
+										strokeLinecap='round'
+										strokeLinejoin='round'
 									>
 										<path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
 										<line x1='18' y1='6' x2='6' y2='18'></line>
@@ -76,7 +79,7 @@ function Products() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	)
 }
 export default Products
