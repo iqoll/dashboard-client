@@ -9,7 +9,7 @@ function Products() {
 		const fetchAllProducts = async () => {
 			try {
 				const res = await axios.get(
-					`${process.env.REACT_APP_BACKEND_ROUTE}/products`
+					`https://dashboard-crud-57e7ed374405.herokuapp.com/products`
 				)
 				setProducts(res.data)
 				console.log(res.data)
@@ -23,7 +23,7 @@ function Products() {
 	const handleDelete = async (id) => {
 		try {
 			await axios.delete(
-				`${process.env.REACT_APP_BACKEND_ROUTE}/products/${id}`
+				`https://dashboard-crud-57e7ed374405.herokuapp.com/products/${id}`
 			)
 			window.location.reload()
 		} catch (error) {

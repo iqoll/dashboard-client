@@ -21,7 +21,7 @@ function Add() {
 		e.preventDefault()
 		try {
 			await axios.post(
-				`${process.env.REACT_APP_BACKEND_ROUTE}/products`,
+				`https://dashboard-crud-57e7ed374405.herokuapp.com/products`,
 				product
 			)
 			navigate('/')

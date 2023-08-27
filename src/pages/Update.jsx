@@ -24,7 +24,7 @@ function Update() {
 	const populateForm = async () => {
 		try {
 			const res = await axios.get(
-				`${process.env.REACT_APP_BACKEND_ROUTE}/products/${id}`
+				`https://dashboard-crud-57e7ed374405.herokuapp.com/products/${id}`
 			)
 			const data = res.data
 			setProduct(data[0])
@@ -46,7 +46,7 @@ function Update() {
 		e.preventDefault()
 		try {
 			await axios.put(
-				`${process.env.REACT_APP_BACKEND_ROUTE}/products/${id}`,
+				`https://dashboard-crud-57e7ed374405.herokuapp.com/products/${id}`,
 				product
 			)
 			navigate('/')
