@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import Navbar from '../components/Navbar'
 import axios from 'axios'
 
 function Products() {
@@ -33,11 +32,10 @@ function Products() {
 
 	return (
 		<>
-			<Navbar />
 			<div className='mt-16 flex justify-center'>
 				<div className='flex flex-col space-y-3'>
 					<h1 className='mb-6 w-full text-center text-2xl bg-blue-500 text-white'>
-						Products
+						Products Wishlist
 					</h1>
 					<div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
 						{products.map((product) => (

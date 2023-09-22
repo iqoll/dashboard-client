@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Navbar from '../components/Navbar'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -59,7 +58,6 @@ function Update() {
 
 	return (
 		<>
-			<Navbar />
 			<div className='flex flex-col items-center justify-center min-h-screen'>
 				<h2 className='mb-4 font-bold text-2xl'>Update Product</h2>
 				<div className='p-16 bg-slate-200 rounded-xl shadow-2xl'>
