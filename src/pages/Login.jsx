@@ -1,31 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
-import axios from 'axios'
+import { useLogin } from '../hooks/useLogin'
 
 function Login() {
-	const [formData, setFormData] = useState({
-		email: '',
-		password: '',
-	})
-
-	const { email, password } = formData
-
-	const handleChange = (e) => {
-		setFormData((prevData) => ({
-			...prevData,
-			[e.target.name]: e.target.value,
-		}))
-	}
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const { login, error, isLoading } = useLogin()
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		const userData = {
-			email,
-			password,
-		}
-
-		console.log(formData)
+		await login(email, password)
 
 		// 	try {
 		// 		const response = await axios.post(
@@ -61,25 +46,31 @@ function Login() {
 						name='email'
 						placeholder='Enter your email'
 						value={email}
-						onChange={handleChange}
+						onChange={(e) => setEmail(e.target.value)}
 					/>
 					<input
 						className='p-2 rounded-md'
 						id='password'
-						type='text'
+						type='password'
 						name='password'
 						placeholder='Enter password'
 						value={password}
-						onChange={handleChange}
+						onChange={(e) => setPassword(e.target.value)}
 					/>
 					<div>
 						<button
+							disabled={isLoading}
 							type='submit'
 							className='bg-black text-white p-2 w-full rounded-md'
 						>
-							Submit
+							Login
 						</button>
 					</div>
+					{error && (
+						<div className='p-2 my-5 text-[#e7195a] border border-[#e7195a] rounded-md bg-[#ffefef]'>
+							{error}
+						</div>
+					)}
 				</form>
 			</section>
 		</>
