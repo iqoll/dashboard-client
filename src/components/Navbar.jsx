@@ -1,7 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
+import { useLogout } from '../hooks/useLogout'
 
 function Navbar() {
+	const { logout } = useLogout()
+
+	const handleClick = (e) => {
+		logout()
+	}
+
 	return (
 		<>
 			<header className='flex justify-between items-center p-5 bg-slate-900'>
@@ -23,11 +30,19 @@ function Navbar() {
 						</li>
 					</ul>
 					<div className='text-white'>
+						<button
+							className='flex items-center space-x-1 hover:-translate-y-0.5'
+							onClick={handleClick}
+						>
+							<FaSignOutAlt /> Logout
+						</button>
+					</div>
+					<div className='text-white'>
 						<Link
 							to='/login'
 							className='flex items-center space-x-1 hover:-translate-y-0.5'
 						>
-							<FaSignInAlt /> LogIn
+							<FaSignInAlt /> Login
 						</Link>
 						<Link
 							to='/register'
