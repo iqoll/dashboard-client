@@ -1,6 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Products from './pages/Products';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar'
 import Add from './pages/Add';
 import Update from './pages/Update';
 import Login from './pages/Login';

@@ -24,10 +24,16 @@ function Navbar() {
 					</ul>
 					<div className='text-white'>
 						<Link
-							to='/logout'
+							to='/login'
 							className='flex items-center space-x-1 hover:-translate-y-0.5'
 						>
-							<FaSignOutAlt /> Logout
+							<FaSignInAlt /> LogIn
+						</Link>
+						<Link
+							to='/register'
+							className='flex items-center space-x-1 hover:-translate-y-0.5'
+						>
+							<FaUser /> Register
 						</Link>
 					</div>
 				</>

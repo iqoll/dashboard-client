@@ -1,25 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
+import { useRegister } from '../hooks/useRegister'
 
 function Register() {
-	const [formData, setFormData] = useState({
-		name: '',
-		email: '',
-		password: '',
-		password2: '',
-	})
+	const [name, setName] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const { register, error, isLoading } = useRegister()
 
-	const { name, email, password, password2 } = formData
-
-	const handleChange = (e) => {
-		setFormData((prevData) => ({
-			...prevData,
-			[e.target.name]: e.target.value,
-		}))
-	}
-
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
+
+		await register(name, email, password)
 	}
 
 	return (
@@ -40,7 +32,7 @@ function Register() {
 						name='name'
 						placeholder='Enter your name'
 						value={name}
-						onChange={handleChange}
+						onChange={(e) => setName(e.target.value)}
 					/>
 					<input
 						className='p-2 rounded-md'
@@ -49,34 +41,31 @@ function Register() {
 						name='email'
 						placeholder='Enter your email'
 						value={email}
-						onChange={handleChange}
+						onChange={(e) => setEmail(e.target.value)}
 					/>
 					<input
 						className='p-2 rounded-md'
 						id='password'
-						type='text'
+						type='password'
 						name='password'
 						placeholder='Enter password'
 						value={password}
-						onChange={handleChange}
-					/>
-					<input
-						className='p-2 rounded-md'
-						id='password2'
-						type='text'
-						name='password2'
-						placeholder='Confirm password'
-						value={password2}
-						onChange={handleChange}
+						onChange={(e) => setPassword(e.target.value)}
 					/>
 					<div>
 						<button
+							disabled={isLoading}
 							type='submit'
 							className='bg-black text-white p-2 w-full rounded-md'
 						>
 							Submit
 						</button>
 					</div>
+					{error && (
+						<div className='p-2 my-5 text-[#e7195a] border border-[#e7195a] rounded-md bg-[#ffefef]'>
+							{error}
+						</div>
+					)}
 				</form>
 			</section>
 		</>

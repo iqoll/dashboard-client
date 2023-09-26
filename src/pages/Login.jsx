@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
+import axios from 'axios'
 
 function Login() {
 	const [formData, setFormData] = useState({
@@ -16,8 +17,30 @@ function Login() {
 		}))
 	}
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
+
+		const userData = {
+			email,
+			password,
+		}
+
+		console.log(formData)
+
+		// 	try {
+		// 		const response = await axios.post(
+		// 			'http://localhost:5000/users/login',
+		// 			userData
+		// 		)
+
+		// 		if (response.data) {
+		// 			localStorage.setItem('user', JSON.stringify(response.data))
+		// 		}
+
+		// 		return response.data
+		// 	} catch (error) {
+		// 		throw error
+		// 	}
 	}
 
 	return (
