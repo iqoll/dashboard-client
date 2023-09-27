@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 function Add() {
 	const [product, setProduct] = useState({
@@ -10,6 +11,7 @@ function Add() {
 		quantity: null,
 	})
 
+	const { user } = useAuthContext()
 	const navigate = useNavigate()
 
 	const handleChange = (e) => {
@@ -18,10 +20,20 @@ function Add() {
 
 	const handleClick = async (e) => {
 		e.preventDefault()
+
+		if (!user) {
+			return
+		}
+
 		try {
 			await axios.post(
 				`https://dashboard-crud-57e7ed374405.herokuapp.com/products`,
-				product
+				product,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
 			)
 			navigate('/')
 		} catch (error) {

@@ -1,14 +1,21 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 function Products() {
 	const [products, setProducts] = useState([])
+	const { user } = useAuthContext()
 
 	useEffect(() => {
 		const fetchAllProducts = async () => {
 			try {
 				const res = await axios.get(
-					`https://dashboard-crud-57e7ed374405.herokuapp.com/products`
+					`https://dashboard-crud-57e7ed374405.herokuapp.com/products`,
+					{
+						headers: {
+							Authorization: `Bearer ${user.token}`,
+						},
+					}
 				)
 				setProducts(res.data)
 				console.log(res.data)
@@ -16,13 +23,24 @@ function Products() {
 				console.log(error)
 			}
 		}
-		fetchAllProducts()
-	}, [])
+		if (user) {
+			fetchAllProducts()
+		}
+	}, [user])
 
 	const handleDelete = async (id) => {
+		if (!user) {
+			return
+		}
+
 		try {
 			await axios.delete(
-				`https://dashboard-crud-57e7ed374405.herokuapp.com/products/${id}`
+				`https://dashboard-crud-57e7ed374405.herokuapp.com/products/${id}`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
 			)
 			window.location.reload()
 		} catch (error) {

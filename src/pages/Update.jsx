@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 function Update() {
 	const [product, setProduct] = useState({
@@ -9,6 +10,7 @@ function Update() {
 		description: '',
 		quantity: null,
 	})
+	const { user } = useAuthContext()
 
 	const [id, setId] = useState(null)
 
@@ -21,9 +23,18 @@ function Update() {
 	console.log(id)
 
 	const populateForm = async () => {
+		if (!user) {
+			return
+		}
+
 		try {
 			const res = await axios.get(
-				`https://dashboard-crud-57e7ed374405.herokuapp.com/products/${id}`
+				`https://dashboard-crud-57e7ed374405.herokuapp.com/products/${id}`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
 			)
 			const data = res.data
 			setProduct(data[0])
@@ -43,10 +54,20 @@ function Update() {
 
 	const handleClick = async (e) => {
 		e.preventDefault()
+
+		if (!user) {
+			return
+		}
+
 		try {
 			await axios.put(
 				`https://dashboard-crud-57e7ed374405.herokuapp.com/products/${id}`,
-				product
+				product,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
 			)
 			navigate('/')
 		} catch (error) {
