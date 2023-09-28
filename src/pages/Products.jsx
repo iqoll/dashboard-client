@@ -20,7 +20,6 @@ function Products() {
 					}
 				)
 				setProducts(res.data)
-				console.log(res.data)
 			} catch (error) {
 				console.log(error)
 			}

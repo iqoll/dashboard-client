@@ -41,7 +41,6 @@ function Update() {
 			)
 			const data = res.data
 			setProduct(data[0])
-			console.log(product)
 		} catch (error) {
 			console.log(error)
 		}
