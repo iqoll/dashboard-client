@@ -18,7 +18,7 @@ export const useRegister = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/users', userData)
+      const res = await axios.post('https://dashboard-crud-57e7ed374405.herokuapp.com/users', userData)
       
       if(res.data) {
         // Save the user to localStorage
