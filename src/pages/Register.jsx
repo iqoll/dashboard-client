@@ -38,6 +38,7 @@ function Register() {
 						placeholder='Enter your name'
 						value={name}
 						onChange={(e) => setName(e.target.value)}
+						autoComplete='off'
 					/>
 					<input
 						className='p-2 rounded-md'
@@ -47,6 +48,7 @@ function Register() {
 						placeholder='Enter your email'
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
+						autoComplete='off'
 					/>
 					<input
 						className='p-2 rounded-md'

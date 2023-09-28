@@ -113,6 +113,7 @@ function Update() {
 							value={product.name || ''}
 							placeholder='name'
 							onChange={handleChange}
+							autoComplete='off'
 						/>
 						<input
 							className='p-2 rounded-md'
@@ -121,6 +122,7 @@ function Update() {
 							value={product.description || ''}
 							placeholder='description'
 							onChange={handleChange}
+							autoComplete='off'
 						/>
 						<input
 							className='p-2 rounded-md'

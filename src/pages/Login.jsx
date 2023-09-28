@@ -37,6 +37,7 @@ function Login() {
 						placeholder='Enter your email'
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
+						autoComplete='off'
 					/>
 					<input
 						className='p-2 rounded-md'

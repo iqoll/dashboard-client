@@ -63,6 +63,7 @@ function Add() {
 							name='name'
 							placeholder='name'
 							onChange={handleChange}
+							autoComplete='off'
 						/>
 						<input
 							className='p-2 rounded-md'
@@ -70,6 +71,7 @@ function Add() {
 							name='description'
 							placeholder='description'
 							onChange={handleChange}
+							autoComplete='off'
 						/>
 						<input
 							className='p-2 rounded-md'
