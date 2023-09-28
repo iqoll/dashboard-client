@@ -2,6 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../hooks/useAuthContext'
+import Spinner from '../components/Spinner'
 
 function Update() {
 	const [product, setProduct] = useState({
@@ -10,6 +11,8 @@ function Update() {
 		description: '',
 		quantity: null,
 	})
+	const [isLoading, setIsLoading] = useState(null)
+
 	const { user } = useAuthContext()
 
 	const [id, setId] = useState(null)
@@ -59,6 +62,8 @@ function Update() {
 			return
 		}
 
+		setIsLoading(true)
+
 		try {
 			await axios.put(
 				`https://dashboard-crud-57e7ed374405.herokuapp.com/products/${id}`,
@@ -72,10 +77,14 @@ function Update() {
 			navigate('/')
 		} catch (error) {
 			console.log(error)
+		} finally {
+			setIsLoading(false)
 		}
 	}
 
-	console.log(product)
+	if (isLoading) {
+		return <Spinner />
+	}
 
 	return (
 		<>

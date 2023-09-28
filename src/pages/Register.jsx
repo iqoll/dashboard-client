@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { useRegister } from '../hooks/useRegister'
+import Spinner from '../components/Spinner'
 
 function Register() {
 	const [name, setName] = useState('')
@@ -12,6 +13,10 @@ function Register() {
 		e.preventDefault()
 
 		await register(name, email, password)
+	}
+
+	if (isLoading) {
+		return <Spinner />
 	}
 
 	return (

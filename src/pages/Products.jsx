@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useAuthContext } from '../hooks/useAuthContext'
+import Spinner from '../components/Spinner'
 
 function Products() {
 	const [products, setProducts] = useState([])
+	const [isLoading, setIsLoading] = useState(null)
 	const { user } = useAuthContext()
 
 	useEffect(() => {
@@ -33,6 +35,8 @@ function Products() {
 			return
 		}
 
+		setIsLoading(true)
+
 		try {
 			await axios.delete(
 				`https://dashboard-crud-57e7ed374405.herokuapp.com/products/${id}`,
@@ -45,7 +49,13 @@ function Products() {
 			window.location.reload()
 		} catch (error) {
 			console.log(error)
+		} finally {
+			setIsLoading(false)
 		}
+	}
+
+	if (isLoading) {
+		return <Spinner />
 	}
 
 	return (

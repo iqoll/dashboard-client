@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useAuthContext } from '../hooks/useAuthContext'
+import Spinner from '../components/Spinner'
 
 function Add() {
 	const [product, setProduct] = useState({
@@ -10,6 +11,7 @@ function Add() {
 		description: '',
 		quantity: null,
 	})
+	const [isLoading, setIsLoading] = useState(null)
 
 	const { user } = useAuthContext()
 	const navigate = useNavigate()
@@ -25,6 +27,8 @@ function Add() {
 			return
 		}
 
+		setIsLoading(true) // Set isLoading true when the request start
+
 		try {
 			await axios.post(
 				`https://dashboard-crud-57e7ed374405.herokuapp.com/products`,
@@ -38,10 +42,14 @@ function Add() {
 			navigate('/')
 		} catch (error) {
 			console.log(error)
+		} finally {
+			setIsLoading(false)
 		}
 	}
 
-	console.log(product)
+	if (isLoading) {
+		return <Spinner />
+	}
 
 	return (
 		<>

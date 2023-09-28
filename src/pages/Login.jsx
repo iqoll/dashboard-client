@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
 import { useLogin } from '../hooks/useLogin'
+import Spinner from '../components/Spinner'
 
 function Login() {
 	const [email, setEmail] = useState('')
@@ -11,6 +12,10 @@ function Login() {
 		e.preventDefault()
 
 		await login(email, password)
+	}
+
+	if (isLoading) {
+		return <Spinner />
 	}
 
 	return (
