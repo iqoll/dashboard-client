@@ -9,3 +9,5 @@ A personal product wishlist dashboard, simplifying the art of organizing and man
 ## <a href="https://stupendous-entremet-c150b7.netlify.app/"> Deployed on Netlify </a>
 
 <img src="public/wishboard1.png" width="800">
+
+<img src="public/login.png" width="800">
